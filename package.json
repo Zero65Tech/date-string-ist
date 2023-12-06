@@ -1,7 +1,7 @@
 {
   "author": "Rahul Gupta, Zero65 Technologies Pvt. Ltd.",
   "name": "@zero65tech/date-string",
-  "version": "5.0.0",
+  "version": "4.0.0",
   "description": "Date String (yyyy-mm-dd) manipulation",
   "license": "MIT",
   "repository": {

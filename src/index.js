@@ -50,6 +50,12 @@ exports.lastWeek  = () => lastWeek;
 
 
 
+exports.getWeekStart = (dateStr) => {
+  let date = new Date(dateStr + ' GMT');
+  let weekDay = date.getUTCDay() || 7;
+  return exports.shift(dateStr, 1 - weekDay);
+}
+
 exports.getFy = (dateStr = today) => {
   return 'fy' + (parseInt(dateStr.substring(2,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 : 0));
 }
