@@ -26,14 +26,11 @@ exports.lastWeek  = () => this.from(Date.now() - 7 * DAY);
 
 
 
-exports.shift = (date, days) => {
-  if(!days) return date;
-  date = new Date(date + ' GMT+530');
-  date = date.getTime() + days * DAY;
-  return this.from(date);
+exports.shift = (dateStr, days) => {
+  if(!days) return dateStr;
+  let date = new Date(dateStr + ' GMT+530');
+  return this.from(date.getTime() + days * DAY);
 }
-
-
 
 exports.getDuration = (startDate, endDate) => {
   let dtStart = (startDate ? new Date(startDate + ' GMT+530') : new Date()).getTime() + 5.5 * HOUR;
@@ -55,11 +52,6 @@ exports.getWeekEnd = (dateStr) => {
   return this.shift(dateStr, 7 - weekDay);
 }
 
-exports.getFy = (dateStr) => {
-  dateStr = dateStr || this.today();
-  return 'fy' + (parseInt(dateStr.substring(2,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 : 0));
-}
-
 exports.getFyStart = (dateStr) => {
   dateStr = dateStr || this.today();
   return parseInt(dateStr.substring(0,4)) + (dateStr.substring(5,10) >= '04-01' ? 0 : -1) + '-04-01';
@@ -69,6 +61,8 @@ exports.getFyEnd = (dateStr) => {
   dateStr = dateStr || this.today();
   return parseInt(dateStr.substring(0,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 : 0) + '-03-31';
 }
+
+
 
 exports.getQtr = (dateStr) => {
   dateStr = dateStr || this.today();
@@ -100,10 +94,14 @@ exports.getTaxQtr = (dateStr) => {
     return 'q4'
 }
 
+exports.getFy = (dateStr) => {
+  dateStr = dateStr || this.today();
+  return 'fy' + (parseInt(dateStr.substring(2,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 : 0));
+}
+
+
+
 exports.getFyDuration = (dateStr) => {
   dateStr = dateStr || this.today();
-  return exports.getDuration(
-    2000 + parseInt(dateStr.substring(2,4)) + (dateStr.substring(5,10) >= '04-01' ? 0 : -1) + '-04-01',
-    2000 + parseInt(dateStr.substring(2,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 :  0) + '-03-31'
-  ) + 1;
+  return this.getDuration(this.getFyStart(dateStr), this.getFyEnd(dateStr)) + 1;
 }
