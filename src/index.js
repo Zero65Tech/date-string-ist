@@ -14,6 +14,8 @@ exports.from = (date) => {
 
 }
 
+
+
 exports.tomorrow  = () => this.from(Date.now() + DAY);
 
 exports.today     = () => this.from(Date.now());
@@ -24,26 +26,19 @@ exports.lastWeek  = () => this.from(Date.now() - 7 * DAY);
 
 
 
-exports.shift = (dateStr, days) => {
-
-  if(!days)
-    return dateStr;
-
-  let [ year, month, date ] = dateStr.substring(0, 10).split('-');
-  year  = parseInt(year);
-  month = parseInt(month) - 1;
-  date  = parseInt(date);
-
-  let dateObj = new Date(Date.UTC(year, month, date + days));
-
-  return dateObj.toISOString().substring(0,10);
-
+exports.shift = (date, days) => {
+  if(!days) return date;
+  date = date.substring(0, 10);
+  date = new Date(date + ' GMT+530');
+  return this.from(date.getTime() + days * DAY);
 }
+
+
 
 exports.getDuration = (startDate, endDate) => {
   let dtStart = (startDate ? new Date(startDate.substring(0, 10) + ' GMT+530') : new Date()).getTime() + 5.5 * HOUR;
   let dtEnd   = (endDate   ? new Date(  endDate.substring(0, 10) + ' GMT+530') : new Date()).getTime() + 5.5 * HOUR;
-  return Math.floor(dtEnd / 1000 / 60 / 60 / 24) - Math.floor(dtStart / 1000 / 60 / 60 / 24);
+  return Math.floor(dtEnd / DAY) - Math.floor(dtStart / DAY);
 }
 
 

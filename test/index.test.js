@@ -1,5 +1,6 @@
 const { 
   shift,
+  getDuration,
   getWeekStart, 
   getWeekEnd, 
   getFy, 
@@ -22,6 +23,14 @@ describe('.shift', () => {
   test('Next Week', () => expect(shift('2024-01-01',  7)).toBe('2024-01-08'));
   test('Jan → Feb', () => expect(shift('2024-01-30',  2)).toBe('2024-02-01'));
   test('Feb → Jan', () => expect(shift('2024-02-01', -2)).toBe('2024-01-30'));
+
+});
+
+describe('.getDuration', () => {
+
+  test('Next Week', () => expect(getDuration('2024-01-01', '2024-01-08')).toBe( 7));
+  test('Jan → Feb', () => expect(getDuration('2024-01-30', '2024-02-01')).toBe( 2));
+  test('Feb → Jan', () => expect(getDuration('2024-02-01', '2024-01-30')).toBe(-2));
 
 });
 
