@@ -1,4 +1,5 @@
 const { 
+  shift,
   getWeekStart, 
   getWeekEnd, 
   getFy, 
@@ -15,6 +16,14 @@ const {
 } = require('../src');
 
 
+
+describe('.shift', () => {
+
+  test('Next Week', () => expect(shift('2024-01-01',  7)).toBe('2024-01-08'));
+  test('Jan → Feb', () => expect(shift('2024-01-30',  2)).toBe('2024-02-01'));
+  test('Feb → Jan', () => expect(shift('2024-02-01', -2)).toBe('2024-01-30'));
+
+});
 
 describe('.getWeekStart', () => {
 

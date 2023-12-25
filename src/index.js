@@ -9,17 +9,19 @@ exports.from = (date) => {
 
 
 
-exports.shift = (date, days) => {
+exports.shift = (dateStr, days) => {
 
   if(!days)
-    return date;
+    return dateStr;
 
-  if(date)
-    date = new Date(date.substring(0, 10) + ' GMT+530').getTime();
-  else
-    date = Date.now();
+  let [ year, month, date ] = dateStr.split('-');
+  year  = parseInt(year);
+  month = parseInt(month) - 1;
+  date  = parseInt(date);
 
-  return exports.from(date + days * 24 * 60 * 60 * 1000);
+  let dateObj = new Date(Date.UTC(year, month, date + days));
+  
+  return dateObj.toISOString().substring(0,10);
 
 }
 
