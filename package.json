@@ -2,7 +2,7 @@
   "author": "Jai Gupta, Zero65 Technologies Pvt. Ltd.",
   "name": "@zero65tech/date-string-ist",
   "version": "4.0.0",
-  "description": "Date String (yyyy-mm-dd) Manipulation",
+  "description": "Date String Manipulation (IST)",
   "license": "MIT",
   "repository": {
     "type": "git",
