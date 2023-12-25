@@ -1,11 +1,26 @@
+const HOUR = 60 * 60 * 1000;
+const DAY  = 24 * HOUR;
+
+
+
 exports.from = (date) => {
+
   if(date instanceof Date)
     date = date.getTime();
-  date = new Date(date + 5.5 * 60 * 60 * 1000);
-  return date.getUTCFullYear()
-    + ((date.getUTCMonth() < 9 ? '-0' : '-') + (date.getUTCMonth() + 1))
-    + ((date.getUTCDate() < 10 ? '-0' : '-') + date.getUTCDate());
+
+  date = new Date(date + 5.5 * HOUR);
+
+  return date.toISOString().substring(0,10)
+
 }
+
+exports.tomorrow  = () => this.from(Date.now() + DAY);
+
+exports.today     = () => this.from(Date.now());
+
+exports.yesterday = () => this.from(Date.now() - DAY);
+
+exports.lastWeek  = () => this.from(Date.now() - 7 * DAY);
 
 
 
@@ -14,41 +29,22 @@ exports.shift = (dateStr, days) => {
   if(!days)
     return dateStr;
 
-  let [ year, month, date ] = dateStr.split('-');
+  let [ year, month, date ] = dateStr.substring(0, 10).split('-');
   year  = parseInt(year);
   month = parseInt(month) - 1;
   date  = parseInt(date);
 
   let dateObj = new Date(Date.UTC(year, month, date + days));
-  
+
   return dateObj.toISOString().substring(0,10);
 
 }
 
 exports.getDuration = (startDate, endDate) => {
-  let dtStart = (startDate ? new Date(startDate.substring(0, 10) + ' GMT+530') : new Date()).getTime() + 5.5 * 60 * 60 * 1000;
-  let dtEnd   = (endDate   ? new Date(  endDate.substring(0, 10) + ' GMT+530') : new Date()).getTime() + 5.5 * 60 * 60 * 1000;
+  let dtStart = (startDate ? new Date(startDate.substring(0, 10) + ' GMT+530') : new Date()).getTime() + 5.5 * HOUR;
+  let dtEnd   = (endDate   ? new Date(  endDate.substring(0, 10) + ' GMT+530') : new Date()).getTime() + 5.5 * HOUR;
   return Math.floor(dtEnd / 1000 / 60 / 60 / 24) - Math.floor(dtStart / 1000 / 60 / 60 / 24);
 }
-
-
-
-let tomorrow, today, yesterday, lastWeek;
-
-function days() {
-  let now = Date.now();
-  let day = 24 * 60 * 60 * 1000;
-  tomorrow  = exports.from(now + day);
-  today     = exports.from(now);
-  yesterday = exports.from(now - day);
-  lastWeek  = exports.from(now - day * 7);
-  setTimeout(days, day - (now + 5.5 * 60 * 60 * 1000) % day);
-}; days();
-
-exports.tomorrow  = () => tomorrow;
-exports.today     = () => today;
-exports.yesterday = () => yesterday;
-exports.lastWeek  = () => lastWeek;
 
 
 
