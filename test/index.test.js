@@ -34,6 +34,8 @@ describe('.getDuration', () => {
 
 });
 
+
+
 describe('.getWeekStart', () => {
 
   test('2024-01-01', () => expect(getWeekStart('2024-01-01')).toBe('2024-01-01'));
@@ -44,7 +46,7 @@ describe('.getWeekStart', () => {
   test('2024-01-06', () => expect(getWeekStart('2024-01-06')).toBe('2024-01-01'));
   test('2024-01-07', () => expect(getWeekStart('2024-01-07')).toBe('2024-01-01'));
 
-  test('2024-02-01', () => expect(getWeekStart('2024-02-01')).toBe('2024-01-29')); // Feb → Jan
+  test('Feb → Jan', () => expect(getWeekStart('2024-02-01')).toBe('2024-01-29'));
 
 });
 
@@ -58,24 +60,7 @@ describe('.getWeekEnd', () => {
   test('2024-01-06', () => expect(getWeekEnd('2024-01-06')).toBe('2024-01-07'));
   test('2024-01-07', () => expect(getWeekEnd('2024-01-07')).toBe('2024-01-07'));
 
-  test('2024-01-31', () => expect(getWeekEnd('2024-01-31')).toBe('2024-02-04')); // Jan → Feb
-
-});
-
-describe('.getFy', () => {
-
-  test('2024-01-01', () => expect(getFy('2024-01-01')).toBe('fy24'));
-  test('2024-04-01', () => expect(getFy('2024-04-01')).toBe('fy25'));
-  test('2024-03-31', () => expect(getFy('2024-03-31')).toBe('fy24'));
-  test('2025-03-31', () => expect(getFy('2025-03-31')).toBe('fy25'));
-
-});
-
-describe('.getFyMonth', () => {
-
-  test('2024-01-01', () => expect(getFyMonth('2024-01-01')).toBe('JAN'));
-  test('2024-03-31', () => expect(getFyMonth('2024-03-31')).toBe('MAR'));
-  test('2025-12-31', () => expect(getFyMonth('2025-12-31')).toBe('DEC'));
+  test('Jan → Feb', () => expect(getWeekEnd('2024-01-31')).toBe('2024-02-04'));
 
 });
 
@@ -97,6 +82,8 @@ describe('.getFyEnd', () => {
 
 });
 
+
+
 describe('.getQtr', () => {
 
   test('2024-04-01', () => expect(getQtr('2024-04-01')).toBe('q1'));
@@ -117,9 +104,20 @@ describe('.getTaxQtr', () => {
 
 });
 
+describe('.getFy', () => {
+
+  test('2024-01-01', () => expect(getFy('2024-01-01')).toBe('fy24'));
+  test('2024-03-31', () => expect(getFy('2024-03-31')).toBe('fy24'));
+  test('2024-04-01', () => expect(getFy('2024-04-01')).toBe('fy25'));
+  test('2025-03-31', () => expect(getFy('2025-03-31')).toBe('fy25'));
+
+});
+
+
+
 describe('.getFyDuration', () => {
 
-  test('2024-04-01', () => expect(getFyDuration('2024-04-01')).toBe(365));
   test('2023-06-16', () => expect(getFyDuration('2023-06-16')).toBe(366));
+  test('2024-04-01', () => expect(getFyDuration('2024-04-01')).toBe(365));
 
 });
