@@ -61,7 +61,8 @@ Shifts a given date string by a specified number of days. If no days are provide
 
 **Example:**
 ```javascript
-const shiftedDate = shift('2023-01-15', 3); // Shifts the date three days ahead
+const shiftedDate = shift('2024-01-30', 2); // Shifts the date two days ahead
+// Output - '2024-02-01'
 ```
 
 ### 7. `getDuration(startDate, endDate)`
