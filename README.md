@@ -71,7 +71,8 @@ Calculates the duration in days between two dates. If no start date is provided,
 
 **Example:**
 ```javascript
-const duration = getDuration('2023-01-01', '2023-01-10'); // Returns the duration between the two dates
+const duration = getDuration('2024-01-30', '2024-02-01'); // Returns the duration between the two dates
+// Output - 2
 ```
 
 ### 8. `getWeekStart(dateStr)`
@@ -80,7 +81,8 @@ Returns the date string for the start of the week (Monday) for a given date.
 
 **Example:**
 ```javascript
-const weekStartDate = getWeekStart('2023-01-15'); // Returns the date of the Monday of the week
+const weekStartDate = getWeekStart('2023-01-06'); // Returns the date of the Monday of the week
+// Output - '2024-01-01'
 ```
 
 ### 9. `getWeekEnd(dateStr)`
@@ -89,7 +91,8 @@ Returns the date string for the end of the week (Sunday) for a given date.
 
 **Example:**
 ```javascript
-const weekEndDate = getWeekEnd('2023-01-15'); // Returns the date of the Sunday of the week
+const weekEndDate = getWeekEnd('2023-01-06'); // Returns the date of the Sunday of the week
+// Output - '2024-01-07'
 ```
 
 ### 10. `getFyStart(dateStr)`
@@ -99,6 +102,7 @@ Returns the start date string of the fiscal year for a given date. If no date is
 **Example:**
 ```javascript
 const fyStartDate = getFyStart('2023-06-01'); // Returns the start date of the fiscal year
+// Output - '2023-04-01'
 ```
 
 ### 11. `getFyEnd(dateStr)`
@@ -108,6 +112,7 @@ Returns the end date string of the fiscal year for a given date. If no date is p
 **Example:**
 ```javascript
 const fyEndDate = getFyEnd('2023-06-01'); // Returns the end date of the fiscal year
+// Output - '2024-03-31'
 ```
 
 ### 12. `getQtr(dateStr)`
@@ -117,6 +122,7 @@ Returns the fiscal quarter for a given date in the format "q1", "q2", "q3", or "
 **Example:**
 ```javascript
 const quarter = getQtr('2023-06-01'); // Returns the fiscal quarter for the date
+// Output - 'q1'
 ```
 
 ### 13. `getTaxQtr(dateStr)`
@@ -126,6 +132,7 @@ Returns the tax quarter for a given date in the format "q1", "q2", "q3", "q4", o
 **Example:**
 ```javascript
 const taxQuarter = getTaxQtr('2023-06-01'); // Returns the tax quarter for the date
+// Output - 'q1'
 ```
 
 ### 14. `getFy(dateStr)`
@@ -135,6 +142,7 @@ Returns the fiscal year for a given date in the format "fyYYYY".
 **Example:**
 ```javascript
 const fiscalYear = getFy('2023-06-01'); // Returns the fiscal year for the date
+// Output - 'fy23'
 ```
 
 ### 15. `getFyDuration(dateStr)`
@@ -144,5 +152,6 @@ Calculates the duration in days of the fiscal year for a given date. If no date 
 **Example:**
 ```javascript
 const fyDuration = getFyDuration('2023-06-01'); // Returns the duration of the fiscal year
+// Output - 366
 ```
 
