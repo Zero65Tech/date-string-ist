@@ -2,7 +2,7 @@
 
 **Introduction**
 
-This JavaScript library is designed to simplify date-related operations, such as getting today's date, calculating tomorrow's date, shifting dates by a specified number of days, and more. The library is especially useful for scenarios where date manipulation is required for Indian Stock Market.
+This JavaScript library is designed to simplify date-related operations, specifically tailored for the Indian financial system. The library is crafted to assist in various date manipulations crucial for financial calculations, ensuring that all time values are in Indian Standard Time (IST) and date formats follow the "YYYY-MM-DD" pattern.
 
 ## Installation
 
