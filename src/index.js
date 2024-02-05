@@ -16,20 +16,20 @@ exports.from = (date) => {
 
 
 
-exports.tomorrow  = () => this.from(Date.now() + DAY);
+exports.tomorrow  = () => exports.from(Date.now() + DAY);
 
-exports.today     = () => this.from(Date.now());
+exports.today     = () => exports.from(Date.now());
 
-exports.yesterday = () => this.from(Date.now() - DAY);
+exports.yesterday = () => exports.from(Date.now() - DAY);
 
-exports.lastWeek  = () => this.from(Date.now() - 7 * DAY);
+exports.lastWeek  = () => exports.from(Date.now() - 7 * DAY);
 
 
 
 exports.shift = (dateStr, days) => {
   if(!days) return dateStr;
   let date = new Date(dateStr + ' GMT+530');
-  return this.from(date.getTime() + days * DAY);
+  return exports.from(date.getTime() + days * DAY);
 }
 
 exports.getDuration = (startDate, endDate) => {
@@ -43,29 +43,29 @@ exports.getDuration = (startDate, endDate) => {
 exports.getWeekStart = (dateStr) => {
   let date = new Date(dateStr + ' GMT');
   let weekDay = date.getUTCDay() || 7;
-  return this.shift(dateStr, 1 - weekDay);
+  return exports.shift(dateStr, 1 - weekDay);
 }
 
 exports.getWeekEnd = (dateStr) => {
   let date = new Date(dateStr + ' GMT');
   let weekDay = date.getUTCDay() || 7;
-  return this.shift(dateStr, 7 - weekDay);
+  return exports.shift(dateStr, 7 - weekDay);
 }
 
 exports.getFyStart = (dateStr) => {
-  dateStr = dateStr || this.today();
+  dateStr = dateStr || exports.today();
   return parseInt(dateStr.substring(0,4)) + (dateStr.substring(5,10) >= '04-01' ? 0 : -1) + '-04-01';
 }
 
 exports.getFyEnd = (dateStr) => {
-  dateStr = dateStr || this.today();
+  dateStr = dateStr || exports.today();
   return parseInt(dateStr.substring(0,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 : 0) + '-03-31';
 }
 
 
 
 exports.getQtr = (dateStr) => {
-  dateStr = dateStr || this.today();
+  dateStr = dateStr || exports.today();
   let md = dateStr.substring(5,10);
   if(md >= '10-01')
     return 'q3'
@@ -78,7 +78,7 @@ exports.getQtr = (dateStr) => {
 }
 
 exports.getTaxQtr = (dateStr) => {
-  dateStr = dateStr || this.today();
+  dateStr = dateStr || exports.today();
   let md = dateStr.substring(5,10);
   if(md >= '12-16')
     return 'q4'
@@ -95,13 +95,13 @@ exports.getTaxQtr = (dateStr) => {
 }
 
 exports.getFy = (dateStr) => {
-  dateStr = dateStr || this.today();
+  dateStr = dateStr || exports.today();
   return 'fy' + (parseInt(dateStr.substring(2,4)) + (dateStr.substring(5,10) >= '04-01' ? 1 : 0));
 }
 
 
 
 exports.getFyDuration = (dateStr) => {
-  dateStr = dateStr || this.today();
-  return this.getDuration(this.getFyStart(dateStr), this.getFyEnd(dateStr)) + 1;
+  dateStr = dateStr || exports.today();
+  return exports.getDuration(exports.getFyStart(dateStr), exports.getFyEnd(dateStr)) + 1;
 }
