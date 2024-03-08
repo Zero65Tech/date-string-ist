@@ -1,4 +1,6 @@
-const { 
+const {
+  min,
+  max,
   shift,
   getDuration,
   getWeekStart, 
@@ -17,6 +19,22 @@ const {
 } = require('../src');
 
 
+
+describe('.min', () => {
+
+  test('Case 1', () => expect(min('2024-01-01', '2024-01-30', '2024-02-01')).toBe('2024-01-01'));
+  test('Case 2', () => expect(min('2024-02-01', '2024-01-01', '2024-01-30')).toBe('2024-01-01'));
+  test('Case 3', () => expect(min('2024-02-01', '2024-01-30', '2024-01-01')).toBe('2024-01-01'));
+
+});
+
+describe('.max', () => {
+
+  test('Case 1', () => expect(max('2024-01-01', '2024-01-30', '2024-02-01')).toBe('2024-02-01'));
+  test('Case 2', () => expect(max('2024-02-01', '2024-01-01', '2024-01-30')).toBe('2024-02-01'));
+  test('Case 3', () => expect(max('2024-02-01', '2024-01-30', '2024-01-01')).toBe('2024-02-01'));
+
+});
 
 describe('.shift', () => {
 

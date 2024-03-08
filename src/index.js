@@ -10,7 +10,7 @@ exports.from = (date) => {
 
   date = new Date(date + 5.5 * HOUR);
 
-  return date.toISOString().substring(0,10)
+  return date.toISOString().substring(0,10);
 
 }
 
@@ -23,6 +23,54 @@ exports.today     = () => exports.from(Date.now());
 exports.yesterday = () => exports.from(Date.now() - DAY);
 
 exports.lastWeek  = () => exports.from(Date.now() - 7 * DAY);
+
+
+
+exports.min = (dateStr, ...dateStrArr) => {
+
+  let dateStr1 = dateStr;
+  let dateStr2 = dateStrArr[0];
+
+  if(dateStr1 === undefined)
+    return dateStr2;
+  if(dateStr2 === undefined)
+    return dateStr1;
+
+  if(dateStr1 === null)
+    return dateStr2;
+  if(dateStr2 === null)
+    return dateStr1;
+
+  dateStr = dateStr1 <= dateStr2 ? dateStr1 : dateStr2;
+  if(dateStrArr.length <= 1)
+    return dateStr;
+
+  return exports.min(dateStr, ...dateStrArr.slice(1));
+
+}
+
+exports.max = (dateStr, ...dateStrArr) => {
+
+  let dateStr1 = dateStr;
+  let dateStr2 = dateStrArr[0];
+
+  if(dateStr1 === undefined)
+    return dateStr2;
+  if(dateStr2 === undefined)
+    return dateStr1;
+
+  if(dateStr1 === null)
+    return dateStr2;
+  if(dateStr2 === null)
+    return dateStr1;
+
+  dateStr = dateStr1 >= dateStr2 ? dateStr1 : dateStr2;
+  if(dateStrArr.length <= 1)
+    return dateStr;
+
+  return exports.max(dateStr, ...dateStrArr.slice(1));
+
+}
 
 
 
