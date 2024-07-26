@@ -16,6 +16,8 @@ exports.from = (date) => {
 
 
 
+exports.nextWeek  = () => exports.from(Date.now() + 7 * DAY);
+
 exports.tomorrow  = () => exports.from(Date.now() + DAY);
 
 exports.today     = () => exports.from(Date.now());
